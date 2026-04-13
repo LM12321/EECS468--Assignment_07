@@ -32,4 +32,7 @@ replicate' :: Int -> a -> [a]
 replicate' a b = [b | a <- [1..a]]
 
 perfects :: Int -> [Int]
-perfects n = [x if x == sum zs | x <- [1..n], y <- [1..x], zs <- x `mod` y == 0]
+-- x is each number we check
+-- y is the factor check
+-- zs is the sum of all factors
+perfects n = [x | x <- [1..n], let factors = [y | y <- [1..x-1], x `mod` y == 0], x == sum factors]
