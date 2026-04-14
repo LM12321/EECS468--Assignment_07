@@ -31,8 +31,20 @@ Creation Date: 04/10/26 -- 04/XX/26
 replicate' :: Int -> a -> [a]
 replicate' a b = [b | a <- [1..a]]
 
+
 perfects :: Int -> [Int]
 -- x is each number we check
--- y is the factor check
+-- y is the factor check (from 1 to x//2)
 -- zs is the sum of all factors
-perfects n = [x | x <- [1..n], let factors = [y | y <- [1..x-1], x `mod` y == 0], x == sum factors]
+perfects n = [x | x <- [1..n], let factors = [y | y <- [1..(x `div` 2)], x `mod` y == 0], x == (sum factors)]
+
+
+find :: Eq a => a -> [(a, b)] -> [b]
+{-
+    -iterate through all tuples in list
+    -get tuple in list
+    -if key == first element
+        -add it to list
+-}
+
+find key list_of_tuples = [snd tuple| tuple <- list_of_tuples,  key == fst tuple]
